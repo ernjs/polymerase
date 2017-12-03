@@ -1,0 +1,6 @@
+FROM php:7.0.18-apache
+
+# Default Virtual Host and apache configs
+RUN sed -i "s/DocumentRoot .*/DocumentRoot \/var\/www\/html/" /etc/apache2/sites-enabled/000-default.conf \
+    && a2enmod rewrite \
+    && a2enmod headers

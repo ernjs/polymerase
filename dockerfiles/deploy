@@ -1,0 +1,14 @@
+FROM php:7.0.18-apache
+
+# Basic tools and dependencies
+RUN apt-get update && apt-get install apt-utils -y \
+    libssl-dev \
+    git \
+    zip \
+    unzip \
+    apt-transport-https
+
+# Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin \
+    && mv /usr/local/bin/composer.phar /usr/local/bin/composer \
+    && composer global require hirak/prestissimo

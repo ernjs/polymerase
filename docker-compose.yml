@@ -1,0 +1,34 @@
+version: '2'
+services:
+  deploy:
+    build:
+      context: .
+      dockerfile: deploy
+    command: break-me
+    volumes_from: 
+      - warehouse
+  web:
+    build:
+      context: .
+      dockerfile: web
+    ports:
+      - 80:80
+    links:
+      - mariadb
+  mariadb:
+    image: mariadb:10.2
+    volumes_from:
+      - warehouse
+    ports:
+      - "3306:3306"
+    environment:
+      # Only for development
+      - MYSQL_ROOT_PASSWORD=rna
+  warehouse:
+    build:
+      context: .
+      dockerfile: deploy
+    volumes:
+      - /var/lib/mysql
+      - /.composer
+    command: break-me
