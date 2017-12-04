@@ -5,12 +5,16 @@ services:
       context: .
       dockerfile: deploy
     command: break-me
+    volumes:
+      - $PWD:/var/www/html
     volumes_from: 
       - warehouse
   web:
     build:
       context: .
       dockerfile: web
+    volumes:
+      - $PWD:/var/www/html
     ports:
       - 80:80
     links:
