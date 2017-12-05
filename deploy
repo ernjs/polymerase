@@ -17,3 +17,5 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN mkdir -p /.composer/cache \
     && chmod -R 777 /.composer; cd /.composer \
     && composer require hirak/prestissimo
+
+# @todo Multiple environments (like laravel, yarn, npm, frontend)
