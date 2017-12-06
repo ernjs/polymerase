@@ -8,7 +8,8 @@ PATH=$(pwd)
 
 echo "PATH_POLYMERASE=$PATH" >> $PROFILE;
 
-polymerase="docker-compose -f $PATH/docker-compose.yml run --rm"
+polymerase="docker-compose -f $PATH/docker-compose.yml run --name " 
+polymerase+='${PWD##*/}'
 
 echo "alias polymerase='$polymerase'" >> $PROFILE
 echo "alias polymerase-deploy='$polymerase -u $UID deploy'" >> $PROFILE
