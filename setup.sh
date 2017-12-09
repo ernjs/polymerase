@@ -29,7 +29,9 @@ EOF
 
 sed -i 's/PRS_FIRST_ARG/$1/g' $PROFILE
 sed -i 's/PRS_SECOND_ARG/$2/g' $PROFILE
-sed -i "s#PRS_COMMAND#docker-compose -f $(pwd)\/docker-compose.yml run --name ${PWD##*/}#g" $PROFILE
+sed -i "s#PRS_COMMAND#docker-compose -f $(pwd)\/docker-compose.yml run --name PRS_PWD#g" $PROFILE
 sed -i 's/PRS_REMOVE/$remove/g' $PROFILE
 sed -i 's/PRS_UID/$UID/g' $PROFILE
 sed -i 's/PRS_ARGS/${@:$args_jump}/g' $PROFILE
+sed -i 's%PRS_PWD%${PWD##*/}%g' $PROFILE
+
