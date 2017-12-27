@@ -2,7 +2,6 @@
 
 # @todo Create a makefile for make install
 
-# @todo Setup for multiple shells 
 INSTALL_DIR=/usr/bin/polymerase
 
 cat << EOF > $INSTALL_DIR
