@@ -4,6 +4,8 @@ services:
     build:
       context: .
       dockerfile: deploy
+      args: 
+        HOST_USER: ${USER}
     command: break-me
     volumes:
       - $PWD:/var/www/html
