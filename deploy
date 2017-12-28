@@ -15,6 +15,7 @@ RUN apt-get update && apt-get install apt-utils -y \
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin \
     && mv /usr/local/bin/composer.phar /usr/local/bin/composer
 
+# Create a user with same name of host and add him to root sudoers
 RUN useradd -m $HOST_USER \
     && echo "$HOST_USER ALL= NOPASSWD: ALL" >> /etc/sudoers 
 
