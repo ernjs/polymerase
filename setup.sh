@@ -17,7 +17,7 @@ cat << EOF > $INSTALL_DIR
 	fi
 
 	if [[ "PRS_FIRST_ARG" = 'deploy' ]] || [[ "PRS_SECOND_ARG" = 'deploy' ]]; then
-		PRS_COMMAND PRS_REMOVE -u PRS_UID deploy PRS_ARGS
+		PRS_COMMAND PRS_REMOVE -u PRS_USER deploy PRS_ARGS
 	elif [[ "PRS_FIRST_ARG" = 'web' ]] || [[ "PRS_SECOND_ARG" = 'web' ]]; then
 		PRS_COMMAND PRS_REMOVE web PRS_ARGS
 	fi
@@ -29,5 +29,6 @@ sed -i "s#PRS_COMMAND#docker-compose -f $(pwd)\/docker-compose.yml run --name PR
 sed -i 's/PRS_REMOVE/$remove/g' $INSTALL_DIR
 sed -i 's/PRS_ARGS/${@:$args_jump}/g' $INSTALL_DIR
 sed -i 's%PRS_PWD%${PWD##*/}%g' $INSTALL_DIR
+sed -i 's%PRS_USER%$USER%g' $INSTALL_DIR
 
 chmod +x $INSTALL_DIR
