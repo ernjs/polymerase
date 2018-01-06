@@ -6,6 +6,8 @@ INSTALL_DIR=/usr/bin/polymerase
 
 [ "$UID" -eq 0 ] || exec sudo "$0" "$@"
 
+export USER
+
 cat << EOF > $INSTALL_DIR
 #!/bin/bash
 	remove=''
