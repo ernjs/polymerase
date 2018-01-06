@@ -1,6 +1,7 @@
 version: '2'
 services:
   deploy:
+    image: polymerase-deploy:1.0
     build:
       context: .
       dockerfile: deploy
@@ -12,6 +13,7 @@ services:
     volumes_from: 
       - warehouse
   web:
+    image: polymerase-web:1.0
     build:
       context: .
       dockerfile: web
@@ -22,7 +24,7 @@ services:
     links:
       - mariadb
   mariadb:
-    image: mariadb:10.2
+    image: polymerase-mariadb:10.2
     volumes_from:
       - warehouse
     ports:
@@ -31,9 +33,7 @@ services:
       # Only for development
       - MYSQL_ROOT_PASSWORD=rna
   warehouse:
-    build:
-      context: .
-      dockerfile: deploy
+    image: php:7.0.18-apache
     volumes:
       - /var/lib/mysql
       - /.composer
