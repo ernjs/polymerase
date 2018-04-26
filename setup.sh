@@ -2,7 +2,7 @@
 
 # @todo Create a makefile for make install
 
-INSTALL_DIR=/usr/bin/polymerase
+INSTALL_DIR='/usr/local/bin/polymerase'
 
 [ "$UID" -eq 0 ] || exec sudo "$0" "$@"
 
@@ -25,12 +25,12 @@ cat << EOF > $INSTALL_DIR
 	fi
 EOF
 
-sed -i 's/PRS_FIRST_ARG/$1/g' $INSTALL_DIR
-sed -i 's/PRS_SECOND_ARG/$2/g' $INSTALL_DIR
-sed -i "s#PRS_COMMAND#docker-compose -f $(pwd)\/docker-compose.yml run --name PRS_PWD#g" $INSTALL_DIR
-sed -i 's/PRS_REMOVE/$remove/g' $INSTALL_DIR
-sed -i 's/PRS_ARGS/${@:$args_jump}/g' $INSTALL_DIR
-sed -i 's%PRS_PWD%${PWD##*/}%g' $INSTALL_DIR
-sed -i 's%PRS_USER%$USER%g' $INSTALL_DIR
+sed -i '' 's/PRS_FIRST_ARG/$1/g' $INSTALL_DIR
+sed -i '' 's/PRS_SECOND_ARG/$2/g' $INSTALL_DIR
+sed -i '' "s#PRS_COMMAND#docker-compose -f $(pwd)\/docker-compose.yml run --name PRS_PWD#g" $INSTALL_DIR
+sed -i '' 's/PRS_REMOVE/$remove/g' $INSTALL_DIR
+sed -i '' 's/PRS_ARGS/${@:$args_jump}/g' $INSTALL_DIR
+sed -i '' 's%PRS_PWD%${PWD##*/}%g' $INSTALL_DIR
+sed -i '' 's%PRS_USER%$USER%g' $INSTALL_DIR
 
 chmod +x $INSTALL_DIR
